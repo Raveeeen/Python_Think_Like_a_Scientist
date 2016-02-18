@@ -6,6 +6,8 @@ import math
 # #建立烏龜
 # bob = Turtle()
 # print bob
+#1
+
 
 # #move forward direction
 # fd(bob,100) 
