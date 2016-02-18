@@ -7,8 +7,8 @@ import math
 # bob = Turtle()
 # print bob
 #1
-
-
+#2
+#3
 # #move forward direction
 # fd(bob,100) 
 # #turn left
