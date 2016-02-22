@@ -1,24 +1,10 @@
+#1.
 #-*-coding:utf8-*-
 from swampy.TurtleWorld import*
 import math
-#建立視窗
-# world = TurtleWorld()
-# #建立烏龜
-# bob = Turtle()
-# print bob
-#1
-#2
-#3
-# #move forward direction
-# fd(bob,100) 
-# #turn left
-# lt(bob)
-# #move forward 100 again
-# fd(bob,100)
 world = TurtleWorld()
 bob = Turtle()
 bob.delay = 0.001 # set turtle moving time 0.1 s
-# Made Bob to draw a square 
 
 
 
@@ -40,6 +26,8 @@ def square(t,length):
 
 #把上述的square函數寫成polygon是針對其特性泛化 "generalization"
 def polygon(t,length,n):
+	"""draws a polygon which has side length as length, and side number as n.
+	t is the passing augment in turtle"""
 	n = int(n)
 	# it should be very careful that the angle_turn must used flaot
 	# otherwise the roundoff error would be significant as the n brcome larger!!! 
@@ -50,6 +38,9 @@ def polygon(t,length,n):
 
 # define the default turn angle is 1 degree
 def arc(t,radius,arc_degree = 360):
+	"""draws an arc with radius as radius and degree as arc_degree,
+	default is 360 degrees which is equivlent to drawing a circle with
+	radius = radius"""
 	# set the defalut diagram is circle
 	angle_turn = 1
 	length = radius*angle_turn*math.pi/180
@@ -73,21 +64,32 @@ def polygon(t,n,length):
 	# call polyline function and pass the specific angle into it 
 	polyline(t,n,length,angle)
 
-def refac_arc(t,radius,angle):
-	# must use polyline function to refactor original arc function
+def refac_arc(t,radius,angle=360):
+	#refactoring the old version circle function benefits from reusing the
+	#code in ployline instead of rewriting a new one
 	n = angle/1.0
 	length = radius*math.pi/180
 	polyline(t,int(n),length,1)
 ####################################################################
 # square(bob,30)
 # polygon(bob,4,100)
-refac_arc(bob,20,270)
+refac_arc(bob,200)
 ####################################################################
 #						programming note
 #	int type roundoff error, interface of function design
 
-# docstring
+#4.12
 
+#problem set
+#p1 docstring has been finished 
+#p2 ignored
+#p3 didn't get the point of the question...
+
+#practice 4-2 flower
+#first construct a petal function...
+# One may use pu (pen up) or pd (pen down) function to achevie the goal...
+# but it's may not necessary
+def petal()
 
 
 
