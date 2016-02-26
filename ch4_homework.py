@@ -4,7 +4,7 @@ from swampy.TurtleWorld import*
 import math
 world = TurtleWorld()
 bob = Turtle()
-bob.delay = 0.001 # set turtle moving time 0.1 s
+bob.delay = 0.01 # set turtle moving time 0.1 s
 
 
 
@@ -73,7 +73,7 @@ def refac_arc(t,radius,angle=360):
 ####################################################################
 # square(bob,30)
 # polygon(bob,4,100)
-refac_arc(bob,200)
+# refac_arc(bob,200)
 ####################################################################
 #						programming note
 #	int type roundoff error, interface of function design
@@ -89,8 +89,24 @@ refac_arc(bob,200)
 #first construct a petal function...
 # One may use pu (pen up) or pd (pen down) function to achevie the goal...
 # but it's may not necessary
-def petal()
 
+#以下打算先設計一個函數能用扇形的弧長來模擬花瓣
+#1.先轉角度
+def single_petal(t):
+	#inital start angle set to zero 
+	r = 1
+	arc_angle = 90
+	step = 1 
+	delta_arc = r*step
+	for i in range(arc_angle/step):
+		fd(t,delta_arc)	#move the turtle a step 
+		lt(t,step)	#turn left a step of angle
+	lt(t,180-arc_angle) # set the proper angle prepare for the another side of petal
+	for i in range(arc_angle/step):
+		fd(t,delta_arc)
+		lt(t,step)
+lt(bob,30)
+single_petal(bob)
 
 
 
