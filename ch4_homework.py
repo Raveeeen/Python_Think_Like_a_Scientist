@@ -4,7 +4,7 @@ from swampy.TurtleWorld import*
 import math
 world = TurtleWorld()
 bob = Turtle()
-bob.delay = 0.01 # set turtle moving time 0.1 s
+bob.delay = 0.005 # set turtle moving time 0.1 s
 
 
 
@@ -94,20 +94,30 @@ def refac_arc(t,radius,angle=360):
 #1.先轉角度
 def single_petal(t):
 	#inital start angle set to zero 
-	r = 1
 	arc_angle = 90
 	step = 1 
+	shape_ratio = math.sin(arc_angle/2*(math.pi/180))/arc_angle
+	r = 3/math.sin(arc_angle/2*math.pi/180)/2 #set the axis of petal as a constant thus r should change with angle
 	delta_arc = r*step
-	for i in range(arc_angle/step):
+	for i in range(int(arc_angle/step)):
 		fd(t,delta_arc)	#move the turtle a step 
 		lt(t,step)	#turn left a step of angle
 	lt(t,180-arc_angle) # set the proper angle prepare for the another side of petal
-	for i in range(arc_angle/step):
+	for i in range(int(arc_angle/step)):
 		fd(t,delta_arc)
 		lt(t,step)
 lt(bob,30)
 single_petal(bob)
 
+# another problem occured is how to design the proper ratio between 
+# from the geometry properties the arc_angle more large would result in widder petal
+# and to the larger radius would result in longer petal 
+
+# according to the geometry properties we could find out that the shpae ratio
+# of the petal could be confirmed by length_axis/length_arc = sin(theta/2)/theta
+# given a ratio we can choose the anglg of arc we need.
+# because we wish to set the length of axis r*sin(theta) as a constant
+# therefore with different angle we need adjust r automatically. 
 
 
 
