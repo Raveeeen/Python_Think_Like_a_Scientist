@@ -87,27 +87,59 @@ def refac_arc(t,radius,angle=360):
 
 #practice 4-2 flower
 #first construct a petal function...
-# One may use pu (pen up) or pd (pen down) function to achevie the goal...
+# One may use pu (pen up) or pd (pen down) function to achieve the goal...
 # but it's may not necessary
 
 #以下打算先設計一個函數能用扇形的弧長來模擬花瓣
 #1.先轉角度
-def single_petal(t):
-	#inital start angle set to zero 
-	arc_angle = 90
-	step = 1 
-	shape_ratio = math.sin(arc_angle/2*(math.pi/180))/arc_angle
-	r = 3/math.sin(arc_angle/2*math.pi/180)/2 #set the axis of petal as a constant thus r should change with angle
+def single_petal(t,s=45,length_axis=3):
+	"""this function will draw single petal. Because I don't know how to 
+	write a snippet which can help me solve a equation deducing the shape ratio of petal
+	, the ratio is defined by passing a value s to arc_angle.
+	also you can control the size of petal by tunning length_axis""" 
+	arc_angle = s # this term could affect shape of the petal
+	step = 1 # used to make the arc looks more smooth 
+	shape_ratio = math.sin(arc_angle*(math.pi/180))/arc_angle # this term isn't used now
+	r = length_axis/math.sin(arc_angle/2*math.pi/180)/2 #set the axis of petal as a constant thus r should change with angle
 	delta_arc = r*step
 	for i in range(int(arc_angle/step)):
 		fd(t,delta_arc)	#move the turtle a step 
 		lt(t,step)	#turn left a step of angle
-	lt(t,180-arc_angle) # set the proper angle prepare for the another side of petal
+	lt(t,180-arc_angle) # set a proper angle prepare for the another side of petal
 	for i in range(int(arc_angle/step)):
 		fd(t,delta_arc)
 		lt(t,step)
-lt(bob,30)
-single_petal(bob)
+	lt(t,180-arc_angle) #set the orientation of turtle to the initial direction
+
+def multiple_petal(t,n,cross_ratio=1,length_axis=3):
+	""" t the instance of turtle, n the number of petal. This function gonna 
+	draw n numbers petal, cross_ratio can determine the ratio of petals intersection 
+	and must be positive integer """
+	petal_angle_increment = (360.0/n)
+	s = petal_angle_increment*cross_ratio
+	print s
+	# by which the petal can spaced most closed without vacancy 
+	for i in range(n): 
+		single_petal(t,s,length_axis)		
+		lt(t,petal_angle_increment)
+
+#4-2 (1)
+# n_petals = 7
+# shape_angle = 360.0/(n_petals)
+# multiple_petal(bob,n_petals,shape_angle)
+
+#4-2  (2)
+n_petals = 10
+multiple_petal(bob,n_petals,2)
+
+
+
+
+
+
+
+
+
 
 # another problem occured is how to design the proper ratio between 
 # from the geometry properties the arc_angle more large would result in widder petal
