@@ -117,21 +117,23 @@ def multiple_petal(t,n,cross_ratio=1,length_axis=3):
 	and must be positive integer """
 	petal_angle_increment = (360.0/n)
 	s = petal_angle_increment*cross_ratio
-	print s
 	# by which the petal can spaced most closed without vacancy 
 	for i in range(n): 
 		single_petal(t,s,length_axis)		
 		lt(t,petal_angle_increment)
-
+#########################################
 #4-2 (1)
 # n_petals = 7
-# shape_angle = 360.0/(n_petals)
-# multiple_petal(bob,n_petals,shape_angle)
+# multiple_petal(bob,n_petals)
 
 #4-2  (2)
-n_petals = 10
-multiple_petal(bob,n_petals,2)
+# n_petals = 10
+# multiple_petal(bob,n_petals,2)
 
+#4-2  (3)
+# n_petals = 20
+# multiple_petal(bob,n_petals)
+#########################################
 
 
 
