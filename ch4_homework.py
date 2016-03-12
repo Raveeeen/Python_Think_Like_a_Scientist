@@ -1,10 +1,10 @@
 #1.
 #-*-coding:utf8-*-
 from swampy.TurtleWorld import*
-import math
+import math as m
 world = TurtleWorld()
 bob = Turtle()
-bob.delay = 0.005 # set turtle moving time 0.1 s
+bob.delay = 0.001 # set turtle moving time 0.1 s
 
 
 
@@ -135,6 +135,46 @@ def multiple_petal(t,n,cross_ratio=1,length_axis=3):
 # multiple_petal(bob,n_petals)
 #########################################
 
+def Triangle(t,angle,side_length):
+	bottom_angle = (180.0-angle)/2
+	bottom_length = math.sqrt(2*side_length**2*(1-math.cos(angle*math.pi/180)))
+	fd(t,side_length)
+	lt(t,180-bottom_angle)
+	fd(t,bottom_length)
+	lt(t,180-bottom_angle)
+	fd(t,side_length)
+	lt(t,180-angle)
+def Polygon(t,side_number,side_length):
+	angle = 360.0/side_number
+	for i in range(side_number):
+		Triangle(t,angle,side_length)
+		lt(t,angle)
+#4-3 
+# problem solved by Polygon function simply inputing the number of side (5,6,7)
+
+#4-4 
+# in this problem, we need to design a set of function drawing alphabets.
+# (Don't use class object at this stage...)
+
+#4-5
+# code a spiral pattern, I choose Archimedean spiral function as my drawing function
+# r = a + b*theta
+def spiral(t,radius,ring_number=5,arc_degree = 360):
+	"""draws an arc with radius as radius and degree as arc_degree,
+	default is 360 degrees which is equivlent to drawing a circle with
+	radius = radius"""
+	# set the defalut diagram is circle
+	angle_turn = 1
+	circle_ratio = arc_degree/360.0
+	for i in range(ring_number*int(360/angle_turn*circle_ratio)):
+		length = (radius+0.03*i)*angle_turn*m.pi/180 
+		"""
+		0.03 is the radius increasing ratio which is used to determined
+		the geometry shape of spiral also the angle turn parameter (1) is important 
+		"""
+		fd(t,length)
+		lt(t,angle_turn)
+spiral(bob,4,20)
 
 
 
@@ -143,7 +183,12 @@ def multiple_petal(t,n,cross_ratio=1,length_axis=3):
 
 
 
-# another problem occured is how to design the proper ratio between 
+
+
+
+
+
+# another problem occurred is how to design the proper ratio between 
 # from the geometry properties the arc_angle more large would result in widder petal
 # and to the larger radius would result in longer petal 
 
